@@ -32,7 +32,7 @@ class VistaSignIn(Resource):
             if autoriza== False:
                 return {'mensaje':'Nombre de usuario o password incorrectos'}, 400
             else:
-                return {'mensaje':'Inicio de sesión exitoso'}, 200
+                return autoriza, 200
 
 class HealthCheck(Resource):    
 
