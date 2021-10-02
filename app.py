@@ -13,7 +13,7 @@ def create_app(config_dict: Dict = {}):
 
 seguridad = "http://miso-gestorseguridad.herokuapp.com/gestorSeguridad/authenticateUser"
 def validarAccion(user_name, u_password):
-    response = requests.post(seguridad+'/authenticateUser', json={"username": user_name, "password": u_password})
+    response = requests.get(seguridad+'/authenticateUser', json={"username": user_name, "password": u_password})
     if response.status_code == 200:
         data = response.json()
         return data
@@ -22,7 +22,7 @@ def validarAccion(user_name, u_password):
 
 class VistaSignIn(Resource):
     
-    def get(self):
+    def post(self):
             autoriza = validarAccion('user_name', 'u_password')
             if autoriza== False:
                 return {'mensaje':'Nombre de usuario o password incorrectos'}, 400
