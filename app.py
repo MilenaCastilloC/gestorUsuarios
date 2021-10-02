@@ -23,7 +23,9 @@ def validarAccion(user_name, u_password):
 class VistaSignIn(Resource):
     
     def post(self):
-            autoriza = validarAccion('user_name', 'u_password')
+            user_name = request.json["username"]
+            u_password = request.json["password"]
+            autoriza = validarAccion(user_name, u_password)
             if autoriza== False:
                 return {'mensaje':'Nombre de usuario o password incorrectos'}, 400
             else:
