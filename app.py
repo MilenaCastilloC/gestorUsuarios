@@ -11,9 +11,12 @@ def create_app(config_dict: Dict = {}):
     app = Flask(__name__)    
     return app
 
-seguridad = "http://miso-gestorseguridad.herokuapp.com/gestorSeguridad/authenticateUser"
+seguridad = "http://miso-gestorseguridad.herokuapp.com/gestorSeguridad/"
+
+
+
 def validarAccion(user_name, u_password):
-    response = requests.get(seguridad+'/authenticateUser', json={"username": user_name, "password": u_password})
+    response = requests.post(seguridad+'/authenticateUser', json={"username": user_name, "password": u_password})
     if response.status_code == 200:
         data = response.json()
         return data
